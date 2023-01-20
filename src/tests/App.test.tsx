@@ -1,9 +1,9 @@
 import React from "react";
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import axios from "axios";
+import { render, screen } from "@testing-library/react";
+
 import App from "../App";
 
-test("should ", () => {
+test("should render Id, Name, Year headers and Input with Find id placeholder", () => {
   render(<App />);
   expect(screen.getByText(/Id:/i)).toBeInTheDocument();
   expect(screen.getByText(/Name:/i)).toBeInTheDocument();
