@@ -18,7 +18,18 @@ function App() {
       .get(`https://reqres.in/api/products/${id}`, {
         params: { page: page, per_page: 5 },
       })
-      .then((response) => setProductsData(response.data));
+      .then((response) => setProductsData(response.data))
+      .catch((error) => {
+        if (error.response) {
+          alert(
+            "Data: " + error.response.data + "Status: " + error.response.status
+          );
+        } else if (error.request) {
+          alert(error.request);
+        } else {
+          alert("Error :" + error.message);
+        }
+      });
   }, [id, page]);
 
   function setModal(product: Product) {
@@ -38,7 +49,7 @@ function App() {
           <div className="flex flex-col  items-center my-4">
             <input
               name="idFilter"
-              className="border-b-2 w-1/12 border-amber-500 outline-none"
+              className="border-b-2 w-1/12 mt-2 border-amber-500 outline-none"
               placeholder="Find id..."
               onChange={(input) => setId(input.target.value)}
               type="number"
